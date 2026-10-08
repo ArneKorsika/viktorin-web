@@ -1,0 +1,370 @@
+/* Viktorin search bar ([viktorin_search]) */
+
+.vks-search {
+	--vks-gold: #F8B030;
+	--vks-amber: #94600B;
+	--vks-ink: #1A1A1A;
+	--vks-orange: #F5A623;
+	--vks-muted: #6B6B6B;
+	--vks-line: #E4E4E4;
+	--vks-tint: #FFF6E5;
+	--vks-h: 58px;
+	--vks-radius: 10px;
+
+	display: grid;
+	grid-template-columns: 1fr 1.45fr 0.85fr 1fr auto;
+	gap: 20px;
+	align-items: end;
+	padding: 28px 30px;
+	font-family: "DM Sans", sans-serif;
+	color: var(--vks-ink);
+}
+
+.vks-field {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	min-width: 0;
+}
+
+.vks-search .vks-label {
+	display: block;
+	margin: 0;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--vks-amber);
+	line-height: 1.2;
+}
+
+/* Shared control look */
+.vks-control {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	height: var(--vks-h);
+	margin: 0;
+	padding: 0 16px;
+	border: 1px solid var(--vks-line);
+	border-radius: var(--vks-radius);
+	background: #fff;
+	color: var(--vks-ink);
+	font: 500 15px/1 "DM Sans", sans-serif;
+	text-align: left;
+	text-transform: none;
+	letter-spacing: 0;
+	cursor: pointer;
+	box-shadow: none;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.vks-control:hover {
+	border-color: var(--vks-gold);
+	background: #fff;
+	color: var(--vks-ink);
+}
+
+.vks-control:focus-visible,
+.vks-select.is-open .vks-control,
+.vks-dates.is-focused {
+	outline: none;
+	border-color: var(--vks-gold);
+	box-shadow: 0 0 0 3px rgba(248, 176, 48, 0.25);
+}
+
+.vks-icon {
+	flex: none;
+	width: 20px;
+	height: 20px;
+	color: var(--vks-amber);
+}
+
+/* Dropdown */
+.vks-select {
+	position: relative;
+}
+
+.vks-select__value {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.vks-select__value.is-placeholder,
+.vks-dates__input::placeholder {
+	color: var(--vks-muted);
+	opacity: 1;
+}
+
+.vks-chevron {
+	flex: none;
+	width: 18px;
+	height: 18px;
+	color: var(--vks-muted);
+	transition: transform 0.2s ease;
+}
+
+.vks-select.is-open .vks-chevron {
+	transform: rotate(180deg);
+}
+
+.vks-select__list {
+	position: absolute;
+	z-index: 50;
+	top: calc(100% + 8px);
+	left: 0;
+	right: 0;
+	min-width: 180px;
+	max-height: 280px;
+	margin: 0;
+	padding: 6px;
+	overflow-y: auto;
+	list-style: none;
+	background: #fff;
+	border: 1px solid var(--vks-line);
+	border-radius: var(--vks-radius);
+	box-shadow: 0 16px 40px rgba(26, 26, 26, 0.14);
+	outline: none;
+	animation: vks-pop 0.14s ease-out;
+}
+
+.vks-select__list[hidden] {
+	display: none;
+}
+
+@keyframes vks-pop {
+	from { opacity: 0; transform: translateY(-4px); }
+	to { opacity: 1; transform: none; }
+}
+
+.vks-select__option {
+	position: relative;
+	margin: 0;
+	padding: 11px 36px 11px 12px;
+	border-radius: 7px;
+	font-size: 15px;
+	line-height: 1.3;
+	color: var(--vks-ink);
+	cursor: pointer;
+}
+
+.vks-select__option.is-active {
+	background: var(--vks-tint);
+}
+
+.vks-select__option[aria-selected="true"] {
+	font-weight: 700;
+	color: var(--vks-amber);
+}
+
+.vks-select__option[aria-selected="true"]::after {
+	content: "";
+	position: absolute;
+	right: 14px;
+	top: 50%;
+	width: 6px;
+	height: 11px;
+	margin-top: -7px;
+	border: solid var(--vks-amber);
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+/* Dates */
+.vks-dates {
+	cursor: pointer;
+}
+
+.vks-search .vks-dates__input,
+.vks-search .vks-dates__input:focus {
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	box-shadow: none;
+	outline: none;
+	font: inherit;
+	color: var(--vks-ink);
+	cursor: pointer;
+}
+
+.vks-dates__clear {
+	flex: none;
+	width: 26px;
+	height: 26px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: #F2F2F2;
+	color: var(--vks-muted);
+	font-size: 18px;
+	line-height: 26px;
+	cursor: pointer;
+}
+
+.vks-dates__clear:hover {
+	background: var(--vks-tint);
+	color: var(--vks-amber);
+}
+
+.vks-dates__clear[hidden] {
+	display: none;
+}
+
+/* Submit – same style as the site's other primary buttons */
+.vks-search .vks-submit {
+	height: var(--vks-h);
+	min-width: 160px;
+	margin: 0;
+	padding: 0 36px;
+	border: 1px solid var(--vks-gold);
+	border-radius: var(--vks-radius);
+	background: var(--vks-gold);
+	color: var(--vks-ink);
+	font: 700 15px/1 "DM Sans", sans-serif;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.vks-search .vks-submit:hover,
+.vks-search .vks-submit:focus-visible {
+	background: #fff;
+	color: var(--vks-orange);
+	outline: none;
+}
+
+.vks-search .vks-submit:focus-visible {
+	box-shadow: 0 0 0 3px rgba(248, 176, 48, 0.35);
+}
+
+/* Calendar (Flatpickr) theme */
+.flatpickr-calendar.vks-calendar {
+	margin-top: 8px;
+	border: 0;
+	border-radius: 12px;
+	box-shadow: 0 0 0 1px #E4E4E4, 0 16px 40px rgba(26, 26, 26, 0.14);
+	font-family: "DM Sans", sans-serif;
+}
+
+.flatpickr-calendar.vks-calendar::before,
+.flatpickr-calendar.vks-calendar::after {
+	display: none;
+}
+
+.vks-calendar .flatpickr-months .flatpickr-month,
+.vks-calendar .flatpickr-current-month {
+	color: #1A1A1A;
+	fill: #1A1A1A;
+	font-weight: 700;
+}
+
+.vks-calendar .flatpickr-current-month .flatpickr-monthDropdown-months,
+.vks-calendar .flatpickr-current-month input.cur-year {
+	font-weight: 700;
+}
+
+.vks-calendar .flatpickr-months .flatpickr-prev-month:hover svg,
+.vks-calendar .flatpickr-months .flatpickr-next-month:hover svg {
+	fill: #94600B;
+}
+
+.vks-calendar span.flatpickr-weekday {
+	color: #6B6B6B;
+	font-weight: 600;
+}
+
+.vks-calendar .flatpickr-day {
+	border-radius: 8px;
+	color: #1A1A1A;
+}
+
+.vks-calendar .flatpickr-day:hover,
+.vks-calendar .flatpickr-day:focus {
+	background: #FFF6E5;
+	border-color: #FFF6E5;
+}
+
+.vks-calendar .flatpickr-day.today {
+	border-color: #F8B030;
+}
+
+.vks-calendar .flatpickr-day.inRange,
+.vks-calendar .flatpickr-day.inRange:hover {
+	background: #FFF1D6;
+	border-color: #FFF1D6;
+	box-shadow: -5px 0 0 #FFF1D6, 5px 0 0 #FFF1D6;
+	border-radius: 0;
+}
+
+.vks-calendar .flatpickr-day.selected,
+.vks-calendar .flatpickr-day.startRange,
+.vks-calendar .flatpickr-day.endRange,
+.vks-calendar .flatpickr-day.selected:hover,
+.vks-calendar .flatpickr-day.startRange:hover,
+.vks-calendar .flatpickr-day.endRange:hover {
+	background: #F8B030;
+	border-color: #F8B030;
+	color: #1A1A1A;
+	font-weight: 700;
+}
+
+.vks-calendar .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)),
+.vks-calendar .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)),
+.vks-calendar .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
+	box-shadow: -10px 0 0 #F8B030;
+}
+
+.vks-calendar .flatpickr-day.flatpickr-disabled,
+.vks-calendar .flatpickr-day.prevMonthDay,
+.vks-calendar .flatpickr-day.nextMonthDay {
+	color: #C4C4C4;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+	.vks-search {
+		grid-template-columns: 1fr 1fr;
+		padding: 24px;
+	}
+	.vks-field--dates {
+		grid-column: 1 / -1;
+		grid-row: 2;
+	}
+	/* row 1: type + guests · row 2: dates · row 3: spa + search */
+	.vks-search .vks-submit {
+		width: 100%;
+	}
+}
+
+/* Medium desktops: shorter labels/padding so five columns fit */
+@media (min-width: 1025px) and (max-width: 1280px) {
+	.vks-search {
+		gap: 14px;
+		padding: 24px;
+	}
+	.vks-search .vks-submit {
+		min-width: 0;
+		padding: 0 24px;
+	}
+}
+
+@media (max-width: 600px) {
+	.vks-search {
+		grid-template-columns: 1fr;
+		gap: 16px;
+		padding: 20px;
+	}
+	.vks-field--dates {
+		grid-row: auto;
+	}
+}

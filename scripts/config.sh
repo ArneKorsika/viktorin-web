@@ -10,6 +10,7 @@ LOCAL_URL="${LOCAL_URL:-http://localhost:8888/viktorin}"
 # Third-party plugins/themes are NOT tracked (see versions.txt instead).
 TRACKED_CODE=(
   "plugins/superuser-core"
+  "plugins/viktorin-site"
   "themes/jupiterx-child"
 )
 

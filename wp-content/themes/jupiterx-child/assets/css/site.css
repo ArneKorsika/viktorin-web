@@ -1,1 +1,27 @@
 /* Viktorin site styles */
+
+/*
+ * Popups (JetPopup) are appended to <body>, outside Jupiter X's .jupiterx-site
+ * wrapper where the site font is applied – give them the site font explicitly.
+ * Form controls don't inherit fonts by default, so make them inherit too.
+ */
+.jet-popup {
+	font-family: "DM Sans", sans-serif;
+}
+.jet-popup input,
+.jet-popup textarea,
+.jet-popup select,
+.jet-popup button {
+	font-family: inherit;
+}
+
+/*
+ * Listing carousel arrows (JetEngine). Colours are set per widget in Elementor
+ * (gold / charcoal, hover white / orange); shape and border live here because
+ * the widget has no controls for them.
+ */
+.jet-listing-grid__slider-icon {
+	border: 1px solid #F8B030;
+	border-radius: 10px;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
