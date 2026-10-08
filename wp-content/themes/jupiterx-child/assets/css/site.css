@@ -16,51 +16,44 @@
 }
 
 /*
- * Listing carousel arrows (JetEngine): round, white, soft shadow, charcoal
- * chevron; gold on hover. On desktop they sit on the card edges at the
- * height of the photo instead of floating outside the cards.
+ * Listing carousel arrows (JetEngine): a pair of quiet outline circles
+ * centred under the carousel (all breakpoints); gold on hover.
  */
+.jupiterx-site .elementor .elementor-element .jet-listing-grid:has(> .jet-listing-grid__slider-icon) {
+	padding-bottom: 76px;
+}
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.prev-arrow {
+	inset: auto auto 0 calc(50% - 52px);
+}
 .jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow {
-	width: 46px;
-	height: 46px;
-	line-height: 46px;
-	margin-top: -23px;
-	border: 1px solid #EEE8DC;
+	width: 44px;
+	height: 44px;
+	line-height: 44px;
+	margin: 0;
+	border: 1px solid #DDD5C6;
 	border-radius: 50%;
 	background: #fff;
 	color: #1A1A1A;
-	box-shadow: 0 6px 18px rgba(26, 26, 26, 0.12);
-	transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+	box-shadow: none;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.next-arrow {
+	inset: auto auto 0 calc(50% + 8px);
 }
 .jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow svg {
-	width: 14px;
-	height: 14px;
+	width: 13px;
+	height: 13px;
 }
 .jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow:hover,
 .jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow:focus-visible {
 	background: #F8B030;
 	border-color: #F8B030;
 	color: #1A1A1A;
-	box-shadow: 0 8px 22px rgba(148, 96, 11, 0.25);
 	outline: none;
 }
 .jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.swiper-button-disabled {
-	opacity: 0;
+	opacity: 0.35;
 	pointer-events: none;
-}
-@media (min-width: 1025px) {
-	/* 8px = carousel top padding, 265px ≈ photo height → centre on the photo */
-	.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow {
-		top: 140px;
-	}
-	.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.prev-arrow {
-		left: -23px;
-		right: auto;
-	}
-	.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.next-arrow {
-		right: -23px;
-		left: auto;
-	}
 }
 
 /* ------------------------------------------------------------------
@@ -87,6 +80,27 @@
 .raven-nav-menu-main .raven-menu-item:hover::after,
 .raven-nav-menu-main .raven-menu-item-active::after {
 	width: 24px;
+}
+
+/* Keep the menu on one line; tighten item spacing on laptop widths */
+.raven-nav-menu-main .raven-nav-menu {
+	flex-wrap: nowrap;
+}
+.raven-nav-menu-main .raven-nav-menu > li:last-child {
+	margin-right: 0 !important;
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+	.raven-nav-menu-main .raven-nav-menu > li {
+		margin-right: 30px !important;
+	}
+}
+@media (min-width: 1025px) and (max-width: 1200px) {
+	.raven-nav-menu-main .raven-nav-menu > li {
+		margin-right: 22px !important;
+	}
+	.raven-nav-menu-main .raven-menu-item {
+		font-size: 16px !important;
+	}
 }
 
 /* "Book a stay" block: whole gold column is the link, hover like other buttons */
@@ -133,16 +147,39 @@
 	border-radius: 10px;
 	box-shadow: 0 18px 40px -28px rgba(26, 26, 26, 0.25);
 }
-@media (min-width: 1025px) {
+/* Wider boxed area on this page, fixed-width sidebar, results take the rest */
+.jupiterx-site .elementor-section.elementor-section-boxed:has(.elementor-widget-jet-smart-filters-range) {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+.jupiterx-site .elementor-section.elementor-section-boxed:has(.elementor-widget-jet-smart-filters-range) > .elementor-container {
+	max-width: 1320px;
+}
+@media (min-width: 768px) {
 	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) {
-		width: 26%;
+		flex: none;
+		width: 280px;
 	}
 	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) + .elementor-column {
-		width: 74%;
+		flex: 1;
+		width: auto;
+		min-width: 0;
 	}
 	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) + .elementor-column > .elementor-widget-wrap {
-		padding: 0 0 0 40px;
+		padding: 0 0 0 32px;
 	}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) {
+		width: 250px;
+	}
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) + .elementor-column > .elementor-widget-wrap {
+		padding-left: 24px;
+	}
+}
+/* Grid items carry 10px padding – pull the grid up so card tops line up with the filter card */
+.jupiterx-site .elementor .elementor-element#filter-item .jet-listing-grid__items {
+	margin-top: -10px;
 }
 @media (min-width: 1025px) and (min-height: 980px) {
 	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) > .elementor-widget-wrap {
@@ -316,4 +353,339 @@
 		margin: 0 16px 24px;
 		padding: 4px 20px;
 	}
+}
+
+/* ------------------------------------------------------------------
+ * Shared page components (About, Contact)
+ * ------------------------------------------------------------------ */
+
+/* Brand button for Elementor button widgets with class vk-btn */
+.jupiterx-site .elementor .elementor-widget.vk-btn .elementor-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 56px;
+	padding: 0 36px;
+	border: 1px solid #F8B030;
+	border-radius: 10px;
+	background: #F8B030;
+	color: #1A1A1A;
+	font: 700 15px/1 "DM Sans", sans-serif;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	box-shadow: none;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+.jupiterx-site .elementor .elementor-widget.vk-btn .elementor-button:hover,
+.jupiterx-site .elementor .elementor-widget.vk-btn .elementor-button:focus-visible {
+	background: #fff;
+	color: #F5A623;
+}
+
+/* Readable body copy */
+.jupiterx-site .elementor :is(.vk-about-intro, .vk-values, .vk-contact-main, .vk-faq, .vk-contact-intro) .elementor-widget-text-editor {
+	color: #5A5A5A;
+	font-size: 16px;
+	line-height: 1.7;
+}
+.jupiterx-site .elementor .vk-about-intro .elementor-widget-text-editor.vk-lead,
+.jupiterx-site .elementor .vk-contact-intro .elementor-widget-text-editor {
+	font-size: 18px;
+	margin-bottom: 30px;
+}
+
+/* About – intro photo */
+.jupiterx-site .elementor .vk-about-photo img {
+	width: 100%;
+	height: 520px;
+	object-fit: cover;
+	border-radius: 10px;
+}
+@media (max-width: 1024px) {
+	.jupiterx-site .elementor .vk-about-photo img {
+		height: 420px;
+	}
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .vk-about-photo img {
+		height: 300px;
+	}
+}
+
+/* About – value cards */
+.jupiterx-site .elementor .elementor-column.vk-value-card > .elementor-widget-wrap {
+	margin: 0 12px;
+	padding: 36px 32px !important;
+	background: #fff;
+	border: 1px solid #EEE8DC;
+	border-radius: 10px;
+	align-content: flex-start;
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .elementor-column.vk-value-card > .elementor-widget-wrap {
+		margin: 0 0 16px;
+		padding: 28px 24px !important;
+	}
+}
+
+/* Dark call-to-action box */
+.jupiterx-site .elementor .elementor-column.vk-cta-box > .elementor-widget-wrap {
+	padding: 64px 40px !important;
+	background: #1A1A1A;
+	border-radius: 10px;
+}
+.jupiterx-site .elementor .vk-cta-box .elementor-heading-title {
+	color: #fff;
+}
+.jupiterx-site .elementor .vk-cta-box h6.elementor-heading-title {
+	color: #F8B030;
+}
+.jupiterx-site .elementor .vk-cta-box .elementor-widget-text-editor {
+	color: rgba(255, 255, 255, 0.72);
+	font-size: 18px;
+	margin-bottom: 28px;
+}
+.jupiterx-site .elementor .vk-cta-box .vk-btn .elementor-button:hover {
+	border-color: #fff;
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .elementor-column.vk-cta-box > .elementor-widget-wrap {
+		padding: 44px 24px !important;
+	}
+}
+
+/* Contact – info card + form card */
+.jupiterx-site .elementor .elementor-column.vk-contact-info > .elementor-widget-wrap,
+.jupiterx-site .elementor .elementor-column.vk-contact-form > .elementor-widget-wrap {
+	padding: 40px !important;
+	border-radius: 10px;
+	align-content: flex-start;
+}
+.jupiterx-site .elementor .elementor-column.vk-contact-info > .elementor-widget-wrap {
+	margin-right: 16px;
+	background: #FAF8F4;
+	border: 1px solid #EEE8DC;
+}
+.jupiterx-site .elementor .elementor-column.vk-contact-form > .elementor-widget-wrap {
+	margin-left: 16px;
+	background: #fff;
+	border: 1px solid #EEE8DC;
+	box-shadow: 0 18px 40px -28px rgba(26, 26, 26, 0.25);
+}
+.jupiterx-site .elementor .vk-contact-main h4.elementor-heading-title {
+	font-size: 22px;
+	color: #1A1A1A;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget-heading {
+	margin-bottom: 0;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget-heading > .elementor-widget-container {
+	padding-bottom: 24px !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget-icon-box > .elementor-widget-container {
+	padding-bottom: 20px !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget-icon-box:last-of-type > .elementor-widget-container {
+	padding-bottom: 0 !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-wrapper {
+	align-items: center;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-icon {
+	margin-right: 16px !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: #fff;
+	border: 1px solid #EEE8DC;
+	color: #94600B !important;
+	fill: #94600B !important;
+	font-size: 18px !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon svg {
+	width: 18px;
+	height: 18px;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-description,
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-title,
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-title a {
+	color: #1A1A1A !important;
+	font-size: 15px !important;
+	line-height: 1.55 !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-wrapper a:hover,
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-description a:hover {
+	color: #94600B !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget.vk-contact-social {
+	margin-top: 32px;
+	padding-top: 28px;
+	border-top: 1px solid #EEE8DC;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-social-icon {
+	width: 44px;
+	height: 44px;
+	padding: 0 !important;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50% !important;
+	background: #fff !important;
+	border: 1px solid #EEE8DC;
+	font-size: 16px !important;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-social-icon i,
+.jupiterx-site .elementor .vk-contact-info .elementor-social-icon svg {
+	color: #1A1A1A !important;
+	fill: #1A1A1A !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-social-icon:hover {
+	background: #F8B030 !important;
+	border-color: #F8B030;
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .elementor-column.vk-contact-info > .elementor-widget-wrap,
+	.jupiterx-site .elementor .elementor-column.vk-contact-form > .elementor-widget-wrap {
+		margin: 0 0 20px;
+		padding: 28px 22px !important;
+	}
+}
+
+/* Contact – FAQ accordion */
+.jupiterx-site .elementor .vk-faq .jet-accordion__item {
+	margin-bottom: 12px;
+	border: 1px solid #EEE8DC;
+	border-radius: 10px;
+	background: #fff;
+	overflow: hidden;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__control {
+	padding: 20px 24px !important;
+	background: #fff !important;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__label-text {
+	color: #1A1A1A !important;
+	font-size: 17px !important;
+	font-weight: 600 !important;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__content-inner {
+	padding: 0 24px 22px 24px !important;
+	background: #fff !important;
+	color: #5A5A5A !important;
+	font-size: 16px !important;
+	line-height: 1.7 !important;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__icon {
+	color: #94600B !important;
+}
+.jupiterx-site .elementor .vk-about-intro h2.elementor-heading-title {
+	font-size: 44px;
+}
+@media (max-width: 1024px) {
+	.jupiterx-site .elementor .vk-about-intro h2.elementor-heading-title {
+		font-size: 36px;
+	}
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .vk-about-intro h2.elementor-heading-title {
+		font-size: 30px;
+	}
+}
+.jupiterx-site .elementor .vk-cta-box h2.elementor-heading-title {
+	font-size: 40px;
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .vk-cta-box h2.elementor-heading-title {
+		font-size: 28px;
+	}
+}
+@media (max-width: 1024px) {
+	.jupiterx-site .elementor .elementor-column.vk-contact-info > .elementor-widget-wrap {
+		margin: 0 0 20px;
+	}
+	.jupiterx-site .elementor .elementor-column.vk-contact-form > .elementor-widget-wrap {
+		margin: 0;
+	}
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__control {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__label-text {
+	flex: 1;
+	order: 1;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__label-icon {
+	order: 2;
+	flex: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	margin: 0 !important;
+	border-radius: 50%;
+	background: #FFF6E5;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__icon {
+	width: auto !important;
+	height: auto !important;
+	background: transparent !important;
+	border: 0 !important;
+}
+.jupiterx-site .elementor .vk-faq .jet-toggle__icon svg {
+	width: 11px !important;
+	height: 11px !important;
+	fill: #94600B !important;
+}
+/* Contact details: icon beside the text on every screen size */
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-wrapper {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center;
+	text-align: left !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-icon {
+	flex: none;
+	margin: 0 16px 0 0 !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-content {
+	flex: 1;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget-icon-box {
+	padding: 0 0 18px !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-widget-icon-box:has(+ .vk-contact-social) {
+	padding-bottom: 0 !important;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-content {
+	align-self: center;
+}
+.jupiterx-site .elementor .vk-contact-info .elementor-icon-box-description {
+	margin: 0;
+}
+/* About – value card number ("01") with a short gold rule */
+.jupiterx-site .elementor .vk-step-num .elementor-heading-title {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 20px;
+	font: 600 14px/1 "DM Sans", sans-serif;
+	letter-spacing: 0.14em;
+	color: #94600B;
+}
+.jupiterx-site .elementor .vk-step-num .elementor-heading-title::after {
+	content: "";
+	width: 32px;
+	height: 2px;
+	border-radius: 2px;
+	background: #F8B030;
 }
