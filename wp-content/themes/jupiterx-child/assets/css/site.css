@@ -25,3 +25,58 @@
 	border-radius: 10px;
 	transition: background-color 0.15s ease, color 0.15s ease;
 }
+
+/* ------------------------------------------------------------------
+ * Header
+ * ------------------------------------------------------------------ */
+
+/* Main menu: dark text, short gold underline on the active / hovered item */
+.raven-nav-menu-main .raven-menu-item {
+	position: relative;
+	transition: color 0.15s ease;
+}
+.raven-nav-menu-main .raven-menu-item::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -10px;
+	width: 0;
+	height: 2px;
+	border-radius: 2px;
+	background: #F8B030;
+	transform: translateX(-50%);
+	transition: width 0.2s ease;
+}
+.raven-nav-menu-main .raven-menu-item:hover::after,
+.raven-nav-menu-main .raven-menu-item-active::after {
+	width: 24px;
+}
+
+/* "Book a stay" block: whole gold column is the link, hover like other buttons */
+.vk-header-cta {
+	position: relative;
+	transition: background-color 0.15s ease;
+}
+.vk-header-cta .elementor-icon-box-title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+.vk-header-cta .elementor-icon,
+.vk-header-cta .elementor-icon-box-title,
+.vk-header-cta .elementor-icon-box-title a {
+	transition: color 0.15s ease;
+}
+.vk-header-cta:hover > .elementor-widget-wrap,
+.vk-header-cta:hover {
+	background-color: #fff !important;
+}
+.vk-header-cta:hover .elementor-icon,
+.vk-header-cta:hover .elementor-icon-box-title,
+.vk-header-cta:hover .elementor-icon-box-title a {
+	color: #F5A623 !important;
+	fill: #F5A623 !important;
+}
+.vk-header-cta:hover {
+	box-shadow: inset 0 0 0 1px #F8B030;
+}

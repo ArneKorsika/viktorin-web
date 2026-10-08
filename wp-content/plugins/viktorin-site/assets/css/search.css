@@ -251,7 +251,7 @@
 .flatpickr-calendar.vks-calendar {
 	margin-top: 8px;
 	border: 0;
-	border-radius: 12px;
+	border-radius: 10px;
 	box-shadow: 0 0 0 1px #E4E4E4, 0 16px 40px rgba(26, 26, 26, 0.14);
 	font-family: "DM Sans", sans-serif;
 }
