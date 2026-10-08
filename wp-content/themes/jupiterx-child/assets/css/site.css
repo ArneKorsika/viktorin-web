@@ -16,14 +16,51 @@
 }
 
 /*
- * Listing carousel arrows (JetEngine). Colours are set per widget in Elementor
- * (gold / charcoal, hover white / orange); shape and border live here because
- * the widget has no controls for them.
+ * Listing carousel arrows (JetEngine): round, white, soft shadow, charcoal
+ * chevron; gold on hover. On desktop they sit on the card edges at the
+ * height of the photo instead of floating outside the cards.
  */
-.jet-listing-grid__slider-icon {
-	border: 1px solid #F8B030;
-	border-radius: 10px;
-	transition: background-color 0.15s ease, color 0.15s ease;
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow {
+	width: 46px;
+	height: 46px;
+	line-height: 46px;
+	margin-top: -23px;
+	border: 1px solid #EEE8DC;
+	border-radius: 50%;
+	background: #fff;
+	color: #1A1A1A;
+	box-shadow: 0 6px 18px rgba(26, 26, 26, 0.12);
+	transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow svg {
+	width: 14px;
+	height: 14px;
+}
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow:hover,
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow:focus-visible {
+	background: #F8B030;
+	border-color: #F8B030;
+	color: #1A1A1A;
+	box-shadow: 0 8px 22px rgba(148, 96, 11, 0.25);
+	outline: none;
+}
+.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.swiper-button-disabled {
+	opacity: 0;
+	pointer-events: none;
+}
+@media (min-width: 1025px) {
+	/* 8px = carousel top padding, 265px ≈ photo height → centre on the photo */
+	.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow {
+		top: 140px;
+	}
+	.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.prev-arrow {
+		left: -23px;
+		right: auto;
+	}
+	.jupiterx-site .elementor .elementor-element .jet-listing-grid__slider-icon.swiper-arrow.next-arrow {
+		right: -23px;
+		left: auto;
+	}
 }
 
 /* ------------------------------------------------------------------
@@ -79,4 +116,204 @@
 }
 .vk-header-cta:hover {
 	box-shadow: inset 0 0 0 1px #F8B030;
+}
+
+/* ------------------------------------------------------------------
+ * Accommodation filters (JetSmartFilters sidebar)
+ * Prefix .jupiterx-site .elementor .elementor-element.elementor-widget
+ * outranks the per-widget rules Elementor generates.
+ * ------------------------------------------------------------------ */
+
+/* Sidebar becomes a card; on desktop it's wider and sticks under the header */
+.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) > .elementor-widget-wrap {
+	align-self: flex-start;
+	padding: 6px 26px;
+	background: #fff;
+	border: 1px solid #EEE8DC;
+	border-radius: 10px;
+	box-shadow: 0 18px 40px -28px rgba(26, 26, 26, 0.25);
+}
+@media (min-width: 1025px) {
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) {
+		width: 26%;
+	}
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) + .elementor-column {
+		width: 74%;
+	}
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) + .elementor-column > .elementor-widget-wrap {
+		padding: 0 0 0 40px;
+	}
+}
+@media (min-width: 1025px) and (min-height: 980px) {
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) > .elementor-widget-wrap {
+		position: sticky;
+		top: 123px;
+	}
+}
+
+/* Sections: lighter dividers, even spacing */
+.jupiterx-site .elementor .elementor-element.elementor-widget[class*="elementor-widget-jet-smart-filters"] > .elementor-widget-container {
+	padding: 18px 0;
+	border-bottom: 1px solid #EEE8DC;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget[class*="elementor-widget-jet-smart-filters"]:last-child > .elementor-widget-container {
+	border-bottom: 0;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-filter-label {
+	padding: 0 0 12px;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #94600B;
+	line-height: 1.2;
+}
+
+/* Price range */
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider {
+	margin: 10px 0 0;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider__track {
+	height: 4px;
+	margin: 0 9px; /* = half a thumb, so the gold bar lines up with the thumbs */
+	border-radius: 4px;
+	background-color: #EEE8DC;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider__track__range {
+	color: #F8B030;
+	border-radius: 4px;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider .jet-range__slider__input {
+	height: 18px;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider .jet-range__slider__input::-webkit-slider-thumb {
+	width: 18px;
+	height: 18px;
+	background-color: #fff;
+	border: 2px solid #F8B030;
+	box-shadow: 0 2px 6px rgba(26, 26, 26, 0.18);
+	transition: transform 0.15s ease;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider .jet-range__slider__input::-moz-range-thumb {
+	width: 18px;
+	height: 18px;
+	box-sizing: border-box;
+	background-color: #fff;
+	border: 2px solid #F8B030;
+	box-shadow: 0 2px 6px rgba(26, 26, 26, 0.18);
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__slider .jet-range__slider__input:active::-webkit-slider-thumb {
+	transform: scale(1.15);
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-range__values {
+	margin: 18px 0 0;
+	text-align: left;
+	font-size: 15px;
+	font-weight: 600;
+	color: #1A1A1A;
+}
+
+/* Checkboxes (Type, Spa & wellness) */
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list-wrapper {
+	margin: 0;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__row {
+	margin: 0;
+	padding: 0;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__item {
+	display: block;
+	margin: 0;
+	padding: 4px 0;
+	cursor: pointer;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__button {
+	display: flex;
+	align-items: center;
+	font-size: 15px;
+	line-height: 1.3;
+	color: #3A3A3A;
+	transition: color 0.15s ease;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__decorator {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	min-width: 20px;
+	min-height: 20px;
+	margin-right: 12px;
+	border: 1.5px solid #CFC7B8;
+	border-radius: 6px;
+	background: #fff;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__checked-icon {
+	display: flex;
+	font-size: 11px;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__checked-icon svg {
+	width: 11px;
+	height: 11px;
+	fill: #1A1A1A;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__item:hover .jet-checkboxes-list__button {
+	color: #1A1A1A;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__item:hover .jet-checkboxes-list__decorator {
+	border-color: #F8B030;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__input:checked ~ .jet-checkboxes-list__button {
+	color: #1A1A1A;
+	font-weight: 600;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__input:checked ~ .jet-checkboxes-list__button .jet-checkboxes-list__decorator {
+	background-color: #F8B030;
+	border-color: #F8B030;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget .jet-checkboxes-list__input:focus-visible ~ .jet-checkboxes-list__button .jet-checkboxes-list__decorator {
+	box-shadow: 0 0 0 3px rgba(248, 176, 48, 0.3);
+}
+
+/* Guests and Beds: compact chips, three per row */
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list-wrapper {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 8px;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list__item {
+	padding: 0;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list__decorator {
+	display: none;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list__button {
+	justify-content: center;
+	height: 40px;
+	padding: 0 6px;
+	border: 1px solid #E4DED2;
+	border-radius: 10px;
+	background: #fff;
+	font-size: 14px;
+	white-space: nowrap;
+	transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list__item:hover .jet-checkboxes-list__button {
+	border-color: #F8B030;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list__input:checked ~ .jet-checkboxes-list__button {
+	background: #F8B030;
+	border-color: #F8B030;
+	color: #1A1A1A;
+}
+.jupiterx-site .elementor .elementor-element.elementor-widget :is(.jet-checkboxes-list[data-query-var="accommodation-guests"], .jet-checkboxes-list[data-query-var="accommodation-beds"]) .jet-checkboxes-list__input:focus-visible ~ .jet-checkboxes-list__button {
+	box-shadow: 0 0 0 3px rgba(248, 176, 48, 0.3);
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) > .elementor-widget-wrap {
+		width: auto;
+		margin: 0 16px 24px;
+		padding: 4px 20px;
+	}
 }

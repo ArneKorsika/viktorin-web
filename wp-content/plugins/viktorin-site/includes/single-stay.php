@@ -357,46 +357,86 @@ function vks_stay_related( $atts ) {
 			<h2 class="vks-related__title"><?php esc_html_e( 'Other stays you may like', 'viktorin-site' ); ?></h2>
 		</div>
 		<div class="vks-related__grid">
-			<?php foreach ( $posts as $p ) :
-				$ids   = vks_stay_gallery_ids( $p->ID );
-				$type  = (string) vks_stay_meta( $p->ID, VKS_FIELD_TYPE );
-				$city  = (string) vks_stay_meta( $p->ID, VKS_FIELD_CITY );
-				$price = (string) vks_stay_meta( $p->ID, VKS_FIELD_PRICE );
-				$facts = array_slice( vks_stay_facts( $p->ID ), 0, 3 );
-				?>
-				<a class="vks-card" href="<?php echo esc_url( get_permalink( $p ) ); ?>">
-					<span class="vks-card__media">
-						<?php
-						if ( $ids ) {
-							echo wp_get_attachment_image( $ids[0], 'large', false, [ 'loading' => 'lazy', 'sizes' => '(max-width: 767px) 85vw, 33vw' ] );
-						}
-						?>
-						<?php if ( $type ) : ?><span class="vks-badge vks-badge--overlay"><?php echo esc_html( $type ); ?></span><?php endif; ?>
-					</span>
-					<span class="vks-card__body">
-						<span class="vks-card__top">
-							<span class="vks-card__title"><?php echo esc_html( get_the_title( $p ) ); ?></span>
-							<?php if ( '' !== $price ) : ?>
-								<span class="vks-card__price"><strong><?php echo esc_html( vks_format_price( $price ) ); ?></strong> <?php esc_html_e( '/ night', 'viktorin-site' ); ?></span>
-							<?php endif; ?>
-						</span>
-						<?php if ( $city ) : ?>
-							<span class="vks-card__city"><?php echo vks_icon( 'pin' ); // phpcs:ignore ?><?php echo esc_html( $city ); ?></span>
-						<?php endif; ?>
-						<?php if ( $facts ) : ?>
-							<span class="vks-card__facts">
-								<?php foreach ( $facts as $fact ) : ?>
-									<span><?php echo vks_icon( $fact[0] ); // phpcs:ignore ?><?php echo esc_html( preg_replace( '/^Up to /', '', $fact[1] ) ); ?></span>
-								<?php endforeach; ?>
-							</span>
-						<?php endif; ?>
-					</span>
-				</a>
-			<?php endforeach; ?>
+			<?php
+			foreach ( $posts as $p ) {
+				echo vks_render_stay_card( $p->ID ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside
+			}
+			?>
 		</div>
 	</section>
 	<?php
 	return ob_get_clean();
+}
+
+/* ------------------------------------------------------------------ */
+/* Accommodation card (shared by related stays and JetEngine listings) */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Card markup for one accommodation.
+ */
+function vks_render_stay_card( $post_id, $sizes = '(max-width: 767px) 85vw, (max-width: 1024px) 50vw, 33vw' ) {
+	$post_id = (int) $post_id;
+	$ids     = vks_stay_gallery_ids( $post_id );
+	$type    = (string) vks_stay_meta( $post_id, VKS_FIELD_TYPE );
+	$city    = (string) vks_stay_meta( $post_id, VKS_FIELD_CITY );
+	$price   = (string) vks_stay_meta( $post_id, VKS_FIELD_PRICE );
+	$facts   = vks_stay_facts( $post_id );
+	$thumb   = get_post_thumbnail_id( $post_id ) ?: ( $ids[0] ?? 0 );
+	vks_stay_enqueue();
+
+	// Compact fact labels for cards: "2 guests · 2 beds · 1 bath · Spa".
+	$short = [
+		'/^Up to /'          => '',
+		'/ bathrooms?$/'     => ' bath',
+	];
+
+	ob_start();
+	?>
+	<a class="vks-card" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">
+		<span class="vks-card__media">
+			<?php
+			if ( $thumb ) {
+				echo wp_get_attachment_image( $thumb, 'large', false, [ 'loading' => 'lazy', 'sizes' => $sizes ] );
+			}
+			?>
+			<?php if ( $type ) : ?><span class="vks-badge vks-badge--overlay"><?php echo esc_html( $type ); ?></span><?php endif; ?>
+		</span>
+		<span class="vks-card__body">
+			<span class="vks-card__top">
+				<span class="vks-card__title"><?php echo esc_html( get_the_title( $post_id ) ); ?></span>
+				<?php if ( '' !== $price ) : ?>
+					<span class="vks-card__price"><strong><?php echo esc_html( vks_format_price( $price ) ); ?></strong> <?php esc_html_e( '/ night', 'viktorin-site' ); ?></span>
+				<?php endif; ?>
+			</span>
+			<?php if ( $city ) : ?>
+				<span class="vks-card__city"><?php echo vks_icon( 'pin' ); // phpcs:ignore ?><?php echo esc_html( $city ); ?></span>
+			<?php endif; ?>
+			<?php if ( $facts ) : ?>
+				<span class="vks-card__facts">
+					<?php foreach ( $facts as $fact ) : ?>
+						<span><?php echo vks_icon( $fact[0] ); // phpcs:ignore ?><?php echo esc_html( preg_replace( array_keys( $short ), array_values( $short ), $fact[1] ) ); ?></span>
+					<?php endforeach; ?>
+				</span>
+			<?php endif; ?>
+		</span>
+	</a>
+	<?php
+	return ob_get_clean();
+}
+
+/**
+ * [viktorin_stay_card] – card for the current post in a loop
+ * (used inside the JetEngine listing templates). id="123" for a specific one.
+ */
+add_shortcode( 'viktorin_stay_card', 'vks_stay_card_shortcode' );
+function vks_stay_card_shortcode( $atts ) {
+	$atts = shortcode_atts( [ 'id' => 0 ], $atts, 'viktorin_stay_card' );
+	$id   = $atts['id'] ? (int) $atts['id'] : (int) get_the_ID();
+	if ( ! $id || VKS_POST_TYPE !== get_post_type( $id ) ) {
+		return '';
+	}
+	return vks_render_stay_card( $id );
 }
 
 /* ------------------------------------------------------------------ */

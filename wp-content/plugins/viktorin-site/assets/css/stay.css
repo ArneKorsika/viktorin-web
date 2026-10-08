@@ -441,8 +441,16 @@
 
 .vks-card:hover {
 	color: #1A1A1A;
-	box-shadow: 0 16px 40px rgba(26, 26, 26, 0.12);
+	/* Downward-only shadow (negative spread) so it never reaches neighbouring cards */
+	box-shadow: 0 16px 22px -14px rgba(26, 26, 26, 0.28);
 	transform: translateY(-3px);
+}
+
+/* Carousels clip their content (overflow: hidden) – give the hover shadow
+   room inside, and pull the box back out so cards stay aligned. */
+.jet-listing-grid__slider.swiper:has(.vks-card) {
+	margin: -8px 0 -32px;
+	padding: 8px 0 32px;
 }
 
 .vks-card__media {
@@ -469,9 +477,43 @@
 
 .vks-card__body {
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	gap: 8px;
 	padding: 18px 20px 20px;
+}
+
+/* Inside JetEngine listing grids / carousels: fill the item, equal heights */
+.jet-listing-grid__item .vks-card {
+	height: 100%;
+}
+.jet-listing-grid__items.swiper-wrapper {
+	align-items: stretch;
+}
+.jet-listing-grid__items.swiper-wrapper > .swiper-slide {
+	height: auto;
+}
+.jet-listing-grid__item:has(.vks-card) :is(.elementor, .elementor-section, .elementor-container, .elementor-column, .elementor-widget-wrap, .elementor-widget, .elementor-widget-container, .elementor-shortcode) {
+	height: 100%;
+}
+
+/* Narrow cards (e.g. 2-column results grid): price under the title */
+.vks-card {
+	container-type: inline-size;
+}
+@container (max-width: 360px) {
+	.vks-card__top {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 4px;
+	}
+	.vks-card__body {
+		padding: 16px 16px 18px;
+	}
+	.vks-card__facts {
+		gap: 6px 10px;
+		font-size: 13px;
+	}
 }
 
 .vks-card__top {
@@ -516,8 +558,8 @@
 .vks-card__facts {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 6px 16px;
-	margin-top: 6px;
+	gap: 6px 12px;
+	margin-top: auto;
 	padding-top: 14px;
 	border-top: 1px solid #E8E6E1;
 	color: #4A4A4A;
@@ -527,12 +569,13 @@
 .vks-card__facts span {
 	display: inline-flex;
 	align-items: center;
-	gap: 6px;
+	gap: 5px;
+	white-space: nowrap;
 }
 
 .vks-card__facts .vks-icon {
-	width: 18px;
-	height: 18px;
+	width: 16px;
+	height: 16px;
 	color: #94600B;
 }
 
