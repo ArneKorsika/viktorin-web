@@ -158,7 +158,7 @@ function vks_render_search_form( $atts ) {
 		data-field-guests="<?php echo esc_attr( VKS_FIELD_GUESTS ); ?>"
 		data-field-spa="<?php echo esc_attr( VKS_FIELD_SPA ); ?>">
 
-		<?php echo vks_render_dropdown( 'type', __( 'Apartment', 'viktorin-site' ), __( 'Any type', 'viktorin-site' ), $types, $icon_home ); // phpcs:ignore ?>
+		<?php echo vks_render_dropdown( 'type', __( 'Accommodation', 'viktorin-site' ), __( 'Any type', 'viktorin-site' ), $types, $icon_home ); // phpcs:ignore ?>
 
 		<div class="vks-field vks-field--dates">
 			<label class="vks-label" for="<?php echo esc_attr( $dates_id ); ?>"><?php esc_html_e( 'Check in – Check out', 'viktorin-site' ); ?></label>
