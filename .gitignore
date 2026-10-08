@@ -1,0 +1,15 @@
+# macOS / editors
+.DS_Store
+.idea/
+.vscode/
+*.log
+node_modules/
+
+# Local DB backups made by restore.sh
+db/backups/
+
+# Never commit secrets
+.env
+*.local.sql
+READM.md
+wp-config.php

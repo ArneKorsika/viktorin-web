@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Snapshot the local site (code, uploads, DB) into the repo before every commit.
+# Skip once with:  SKIP_SNAPSHOT=1 git commit ...
+[ "${SKIP_SNAPSHOT:-0}" = "1" ] && exit 0
+
+repo="$(git rev-parse --show-toplevel)"
+if ! bash "$repo/scripts/snapshot.sh"; then
+  echo
+  echo "Snapshot failed – commit aborted. Start MAMP and try again,"
+  echo "or commit without a snapshot:  SKIP_SNAPSHOT=1 git commit ..."
+  exit 1
+fi
+
+git -C "$repo" add -A db/viktorin.sql versions.txt wp-content
