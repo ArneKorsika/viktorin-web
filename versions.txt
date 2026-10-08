@@ -19,7 +19,7 @@ jet-smart-filters 3.8.3.1
 jet-tabs 2.3.2
 jupiterx-core 4.50.0
 superuser-core 1.0.0
-viktorin-site 1.1.0
+viktorin-site 1.2.0
 
 [active_plugins]
 advanced-custom-fields/acf.php

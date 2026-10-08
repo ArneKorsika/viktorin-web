@@ -350,7 +350,7 @@
 @media (max-width: 767px) {
 	.jupiterx-site .elementor-container > .elementor-column:has(.elementor-widget-jet-smart-filters-range) > .elementor-widget-wrap {
 		width: auto;
-		margin: 0 16px 24px;
+		margin: 0 0 24px;
 		padding: 4px 20px;
 	}
 }
@@ -688,4 +688,283 @@
 	height: 2px;
 	border-radius: 2px;
 	background: #F8B030;
+}
+
+/* ------------------------------------------------------------------
+ * Home
+ * ------------------------------------------------------------------ */
+.jupiterx-site .elementor .vk-hero-title .elementor-heading-title {
+	max-width: 900px;
+	color: #fff;
+}
+.jupiterx-site .elementor .vk-hero-sub {
+	max-width: 620px;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+/* Ptuj & surroundings – photo cards */
+.jupiterx-site .elementor .vk-places .vk-places-intro {
+	max-width: 620px;
+	margin: 0 auto 48px;
+	color: #5A5A5A;
+	font-size: 18px;
+}
+.jupiterx-site .elementor .elementor-column.vk-place-card > .elementor-widget-wrap {
+	margin: 0 12px;
+	padding: 0 0 28px !important;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid #EEE8DC;
+	border-radius: 10px;
+	align-content: flex-start;
+}
+.jupiterx-site .elementor .vk-place-card .elementor-widget:not(.vk-place-photo) {
+	padding: 0 28px;
+}
+.jupiterx-site .elementor .vk-place-card .vk-place-photo {
+	margin-bottom: 24px;
+}
+.jupiterx-site .elementor .vk-place-card .vk-place-photo img {
+	display: block;
+	width: 100%;
+	height: 240px;
+	object-fit: cover;
+	border-radius: 0;
+}
+.jupiterx-site .elementor .vk-place-card .elementor-widget-heading {
+	margin-bottom: 10px;
+}
+.jupiterx-site .elementor .vk-place-card .elementor-widget-text-editor {
+	color: #5A5A5A;
+	font-size: 16px;
+	line-height: 1.7;
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .elementor-column.vk-place-card > .elementor-widget-wrap {
+		margin: 0 0 16px;
+	}
+}
+
+/* ------------------------------------------------------------------
+ * Accommodation results header (page 149)
+ * ------------------------------------------------------------------ */
+.jupiterx-site .elementor-section.elementor-section-boxed:is(.vk-results-head, .vk-results-active) {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+.jupiterx-site .elementor-section.elementor-section-boxed:is(.vk-results-head, .vk-results-active) > .elementor-container {
+	max-width: 1320px;
+}
+.jupiterx-site .elementor .vk-results-h1 .elementor-heading-title {
+	font-size: 44px;
+	line-height: 1.1;
+}
+.jupiterx-site .elementor .vks-count {
+	margin: 0;
+	font-size: 16px;
+	color: #5A5A5A;
+}
+.jupiterx-site .elementor .vks-count.is-empty {
+	color: #94600B;
+}
+.jupiterx-site .elementor .elementor-column.vk-results-tools > .elementor-widget-wrap {
+	justify-content: flex-end;
+	align-content: flex-end;
+}
+.jupiterx-site .elementor .vk-sort .jet-sorting {
+	justify-content: flex-end;
+}
+.jupiterx-site .elementor .vk-sort .jet-sorting-select {
+	-webkit-appearance: none;
+	appearance: none;
+	min-width: 250px;
+	height: 48px;
+	margin: 0;
+	padding: 0 44px 0 16px;
+	border: 1px solid #E4DED2;
+	border-radius: 10px;
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 7.5l5 5 5-5' fill='none' stroke='%2394600B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center / 18px;
+	color: #1A1A1A;
+	font: 500 15px/1 "DM Sans", sans-serif;
+	cursor: pointer;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.jupiterx-site .elementor .vk-sort .jet-sorting-select:hover {
+	border-color: #F8B030;
+}
+.jupiterx-site .elementor .vk-sort .jet-sorting-select:focus {
+	outline: none;
+	border-color: #F8B030;
+	box-shadow: 0 0 0 3px rgba(248, 176, 48, 0.25);
+}
+
+/* Active filter chips + Clear all */
+.jupiterx-site .elementor .vk-results-active .elementor-widget-wrap {
+	align-items: center;
+	gap: 8px 14px;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filters__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin: 0;
+	padding: 6px 6px 6px 14px;
+	border: 1px solid #F8B030;
+	border-radius: 999px;
+	background: #FFF6E5;
+	color: #1A1A1A;
+	font-size: 14px;
+	line-height: 1.2;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter:hover {
+	background: #FFEBC7;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter__label {
+	color: #94600B;
+	font-weight: 600;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter__val {
+	font-weight: 600;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter__remove {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 22px;
+	height: 22px;
+	margin-left: 4px;
+	border-radius: 50%;
+	background: #F8B030;
+	color: #1A1A1A;
+	font-size: 14px;
+	line-height: 1;
+}
+.jupiterx-site .elementor .vk-clear-filters .jet-remove-all-filters__button {
+	padding: 6px 2px;
+	border: 0;
+	background: none;
+	color: #1A1A1A;
+	font: 600 14px/1.2 "DM Sans", sans-serif;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	cursor: pointer;
+}
+.jupiterx-site .elementor .vk-clear-filters .jet-remove-all-filters__button:hover {
+	color: #94600B;
+	background: none;
+}
+/* Nothing active → no empty row */
+.jupiterx-site .elementor-section.vk-results-active:not(:has(.jet-active-filter)) {
+	display: none;
+}
+
+@media (max-width: 1024px) {
+	.jupiterx-site .elementor .vk-results-h1 .elementor-heading-title {
+		font-size: 36px;
+	}
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .vk-results-h1 .elementor-heading-title {
+		font-size: 30px;
+	}
+	.jupiterx-site .elementor .elementor-column.vk-results-tools > .elementor-widget-wrap {
+		justify-content: flex-start;
+		margin-top: 16px;
+	}
+	.jupiterx-site .elementor .vk-sort,
+	.jupiterx-site .elementor .vk-sort .jet-sorting-select {
+		width: 100%;
+	}
+}
+/* The sidebar's section dividers must not apply to the header widgets */
+.jupiterx-site .elementor :is(.vk-results-head, .vk-results-active) .elementor-element.elementor-widget[class*="elementor-widget-jet-smart-filters"] > .elementor-widget-container {
+	padding: 0;
+	border: 0;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter__remove {
+	position: static;
+	transform: none;
+	flex: none;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter > * {
+	position: static;
+}
+.jupiterx-site .elementor .vk-active-filters .jet-active-filter .jet-active-filter__remove {
+	font-size: 16px !important;
+	font-weight: 600;
+	padding-bottom: 2px;
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .elementor-widget.vk-sort {
+		flex: 1 1 100%;
+		max-width: 100%;
+	}
+	.jupiterx-site .elementor .vk-sort .jet-sorting {
+		display: block;
+	}
+	.jupiterx-site .elementor .vk-sort .jet-sorting-select {
+		min-width: 0;
+	}
+}
+@media (max-width: 767px) {
+	.jupiterx-site .elementor .vk-sort :is(.elementor-widget-container, .jet-smart-filters-sorting, .jet-sorting, .jet-sorting-select) {
+		width: 100% !important;
+		max-width: none !important;
+	}
+}
+
+/* Sorting: custom dropdown (same look as the Home search dropdowns) */
+.vks-sortbox {
+	--vks-gold: #F8B030;
+	--vks-amber: #94600B;
+	--vks-ink: #1A1A1A;
+	--vks-muted: #6B6B6B;
+	--vks-line: #E4E4E4;
+	--vks-tint: #FFF6E5;
+	--vks-h: 52px;
+	--vks-radius: 10px;
+	position: relative;
+	min-width: 280px;
+	font-family: "DM Sans", sans-serif;
+}
+.vks-sortbox .vks-select__button {
+	padding: 0 16px;
+}
+.vks-sortbox__prefix {
+	flex: none;
+	color: var(--vks-muted);
+}
+.vks-sortbox .vks-select__value {
+	font-weight: 600;
+	color: var(--vks-ink);
+}
+.vks-sortbox .vks-select__list {
+	left: auto;
+	right: 0;
+	min-width: 100%;
+}
+.jupiterx-site .elementor .vk-sort select.vks-native-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	min-width: 0 !important;
+	opacity: 0;
+	pointer-events: none;
+}
+@media (max-width: 767px) {
+	.vks-sortbox {
+		width: 100%;
+		min-width: 0;
+	}
+	.vks-sortbox .vks-select__list {
+		left: 0;
+		right: 0;
+	}
 }
